@@ -5,18 +5,27 @@ using System.Collections.Generic;
 public class Candidate {
 
     Dictionary<string, int> stats;
+    Dictionary<string, int> perceivedStats;
 
-	public Candidate()
+    public string[] statNames = new string[] { "purity", "dominion", "aura", "morality", "obedience" };
+
+
+    // Constructor for candidate
+    public Candidate()
     {
         stats = new Dictionary<string, int>();
 
-        stats.Add("purity", 0);
-        stats.Add("intelligence", 0);
-        stats.Add("gullability", 0);
-        stats.Add("sorcery", 0);
-        stats.Add("dominion", 0);
+        // Generate random stats for all stats in statNames between 1 and 100
+        generateStats(statNames);
 
-    }
+        // Generate perceived stats which differ from true stats by up to (-/+)10.
+        perceivedStats = new Dictionary<string, int>();
+        foreach (KeyValuePair<string, int> stat in stats)
+        {
+            perceivedStats.Add(stat.Key, (stat.Value + Random.Range(-10, 10)));
+        }
+
+}
 
     public void setStat(string name, int value)
     {
@@ -34,9 +43,35 @@ public class Candidate {
         }
     }
 
+    public void setPerceivedStat(string name, int value)
+    {
+        perceivedStats[name] = value;
+    }
+
+    public int getPerceivedStat(string name)
+    {
+        if (stats.ContainsKey(name))
+        {
+            return perceivedStats[name];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     private int generateRandomStat()
     {
-        Random rand = new Random();
+        int number = Random.Range(1, 100);
+        return number;
 
+    }
+
+    private void generateStats(string[] statNames)
+    {
+        foreach (string stat in statNames)
+        {
+            stats.Add(stat, generateRandomStat());
+        }
     }
 }
