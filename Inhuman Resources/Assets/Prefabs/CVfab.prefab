@@ -28,7 +28,7 @@ GameObject:
   - 222: {fileID: 22272774}
   - 114: {fileID: 11463122}
   m_Layer: 5
-  m_Name: CV
+  m_Name: CVfab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812c7c309ef0aa942b2b23e7c329c866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectText: {fileID: 0}
+  cvText: 
 --- !u!114 &11493950
 MonoBehaviour:
   m_ObjectHideFlags: 1

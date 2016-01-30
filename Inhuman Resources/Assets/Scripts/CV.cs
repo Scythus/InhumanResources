@@ -24,6 +24,11 @@ public class CV  {
         return this.candidate;
     }
 
+    public string getCVText()
+    {
+        return cvText;
+    }
+
     public void SetupCV(Text text)
     {
         text.text = this.cvText;

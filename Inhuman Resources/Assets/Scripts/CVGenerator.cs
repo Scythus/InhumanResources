@@ -11,10 +11,25 @@ public class CVGenerator {
 	public CV generateCV(Candidate candidate)
     {
         // Generate a CV object for a given candidate
-        string cvText = "Name: Joe Bloggs\n";
+        string cvText = "";
+        cvText += makeHeader(candidate);
         cvText += makeJobHistory(candidate);
         CV cv = new CV(candidate, cvText);
         return cv;
+    }
+
+    private string makeHeader(Candidate candidate)
+    {
+        string dob = Random.Range(1, 28).ToString() + "/";
+        dob += Random.Range(1, 12).ToString() + "/";
+        dob += calculateDOB(candidate);
+
+
+        string headerText = "Name: Joe Bloggs\n";
+
+        headerText += "Date of Birth: " + dob + "\n";
+
+        return headerText;
     }
 
     private string makeJobHistory(Candidate candidate)
@@ -22,13 +37,15 @@ public class CVGenerator {
         // Get the job history for a candidate
         int numJobs = calculateNumberOfJobs(candidate.getAge());
         string jobList = "";
-        for (int x=0; x<=numJobs; x++)
+        for (int x=0; x<numJobs; x++)
         {
             string job = generateJob(candidate);
             jobList += job;
             jobList += "\n";
         }
-        return "This candidate has had " + calculateNumberOfJobs(candidate.getAge()) +"\n\n" + jobList;
+        string jobOutput = "Employment History:\n";
+        jobOutput += jobList;
+        return jobOutput;
     }
 
     // Calculates the number of jobs held
@@ -37,7 +54,7 @@ public class CVGenerator {
     {
         int workingYears = age - 18;
         int minJobs = Mathf.CeilToInt(workingYears / 12);
-        int maxJobs = Mathf.CeilToInt(workingYears / 2);
+        int maxJobs = Mathf.CeilToInt(workingYears / 6);
         int numJobs = Random.Range(minJobs, maxJobs);
         return numJobs;
     }
@@ -45,5 +62,10 @@ public class CVGenerator {
     private string generateJob(Candidate candidate)
     {
         return JobsGenerator.generateJobForCandidate(candidate);
+    }
+
+    private string calculateDOB(Candidate candidate)
+    {
+        return (2016 - candidate.getAge()).ToString();
     }
 }
