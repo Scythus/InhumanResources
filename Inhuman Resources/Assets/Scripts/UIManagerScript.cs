@@ -47,9 +47,32 @@ public class UIManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        startGame();
+    }
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+    public void startGame() {
+        jobs = new JobBank().getJobList();
+
+        for (int i = 0; i < jobs.Count; i++)
+        {
+            Job temp = jobs[i];
+            int randomIndex = Random.Range(i, jobs.Count);
+            jobs[i] = jobs[randomIndex];
+            jobs[randomIndex] = temp;
+        }
+        currentJob = 0;
+        nextLevel();
+    }
+
+    public void nextLevel() {
+        job = jobs[currentJob];
 
         CVGenerator cvGenerator = new CVGenerator();
-
 
         cvList = new List<CV>();
         int numberOfCVs = Random.Range(4, 7);
@@ -58,23 +81,12 @@ public class UIManagerScript : MonoBehaviour {
             Candidate candidate = new Candidate();
             cvList.Add(cvGenerator.generateCV(candidate));
         }
-        
+
         currentCV = 0;
-
-        //job = new TestJob("Junior Cultist (applied frogs department)", "We need a candidate with a passion for subservience and minimal initiative. Enjoyment of frogs optional");
-
-        jobs = new JobBank().getJobList();
-        job = jobs[currentJob];
-
 
         renderCV();
         showJob();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void btnNext() {
         Debug.Log("NEXT CLICKED");
@@ -162,9 +174,20 @@ public class UIManagerScript : MonoBehaviour {
 
     }
 
-    public void startNextJob() {
+    public void destroyContract()
+    {
+        Destroy(renderedContract.gameObject);
+    }
 
+    public void startNextJob() {
+        currentJob++;
+        destroyCV();
+        destroyContract();
+        nextLevel();
     }
 
     
+
 }
+
+
