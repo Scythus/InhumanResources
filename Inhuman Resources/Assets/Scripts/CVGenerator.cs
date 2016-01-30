@@ -20,8 +20,10 @@ public class CVGenerator {
         cvText += makeJobHistory(candidate);
 
         List<string> skillHobbies = generateSkillHobbies(candidate);
-        cvText += skillHobbies[0]+"\n";
-        cvText += skillHobbies[1];
+        if(skillHobbies[0].Length != 9)
+            cvText += skillHobbies[0];
+        if(skillHobbies[1].Length != 9)
+            cvText += skillHobbies[1];
 
         cvText += doctorsNote(candidate);
 
@@ -35,7 +37,7 @@ public class CVGenerator {
         dob += Random.Range(1, 12).ToString() + "/";
         dob += calculateDOB(candidate);
 
-        string headerText = "Date of Birth: " + dob + "\n";
+        string headerText = "Date of Birth: " + dob + "\n\n";
 
         return headerText;
     }
@@ -51,7 +53,7 @@ public class CVGenerator {
             jobList += job;
             jobList += "\n";
         }
-        string jobOutput = "Employment History:\n\n";
+        string jobOutput = "Employment History:\n";
         jobOutput += jobList;
         return jobOutput;
     }
@@ -76,8 +78,8 @@ public class CVGenerator {
     {
         HobbyGenerator hg = new HobbyGenerator();
         Dictionary<string, string> skillHobbies = hg.generateSkillsHobbies(candidate);
-        string skills = "Skills: \n";
-        string hobbies = "Hobbies: \n";
+        string skills = "\nSkills:\n";
+        string hobbies = "\nHobbies:\n";
         foreach (string item in skillHobbies.Keys)
         {
             if (skillHobbies[item] == "skill")
