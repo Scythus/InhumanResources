@@ -259,7 +259,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cvPrefab: {fileID: 22272774, guid: 993ea81d49f4c8147a93a04df855226f, type: 2}
+  jobPrefab: {fileID: 22263616, guid: 2e013611a84863248942523e815d8142, type: 2}
+  contractPrefab: {fileID: 22288550, guid: 5a21049362538954093dbdbd7c4aa8df, type: 2}
   canvasTrans: {fileID: 1739681943}
+  shownJobBtn: {fileID: 1898075493}
 --- !u!4 &461633346
 Transform:
   m_ObjectHideFlags: 0
@@ -971,7 +974,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1898075494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 461633345}
+        m_MethodName: btnShowJob
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1898075494
