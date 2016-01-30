@@ -172,7 +172,16 @@ public class UIManagerScript : MonoBehaviour {
         accept.onClick.AddListener(() => btnNextJob());
 
         stamp.Play();
+        StartCoroutine(waitAndDisplay(renderedContract.transform.Find("Hired").gameObject, 1.7f));
 
+    }
+
+    IEnumerator waitAndDisplay(GameObject gob, float time)
+    {
+        Text text = gob.GetComponent<Text>();
+        yield return new WaitForSeconds(time);
+        text.enabled = true;
+        
     }
 
     public void destroyContract()
