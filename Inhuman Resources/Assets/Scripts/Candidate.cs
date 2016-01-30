@@ -25,7 +25,7 @@ public class Candidate
         // Basic Stats - these don't have perceived values
         age = generateRandomStat(18, 70);
         name = NameGenerator.generateName();
-        sanity = 10;
+        sanity = Random.Range(1, 100);
 
         // Generate random stats for all stats in statNames between 1 and 100
         generateStats(statNames);
@@ -47,6 +47,11 @@ public class Candidate
     public string getName()
     {
         return name;
+    }
+
+    public int getSanity()
+    {
+        return sanity;
     }
 
     public void setStat(string name, int value)

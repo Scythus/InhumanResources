@@ -23,6 +23,8 @@ public class CVGenerator {
         cvText += skillHobbies[0]+"\n";
         cvText += skillHobbies[1];
 
+        cvText += doctorsNote(candidate);
+
         CV cv = new CV(candidate, cvText);
         return cv;
     }
@@ -92,5 +94,27 @@ public class CVGenerator {
     private string calculateDOB(Candidate candidate)
     {
         return (2016 - candidate.getAge()).ToString();
+    }
+
+    private string doctorsNote(Candidate candidate) {
+        string note = "\nDoctors Psychiatric Assessment: ";
+
+        if (candidate.getSanity() < 25) {
+            note += "subject suffers from multiple dellusions, phobias, and psychosis - should be considered dangerous and restrained at all times.";
+        }
+        else if (candidate.getSanity() < 50)
+        {
+            note += "past traumas have made the subject paranoid and prone fits of frenzy. Recomend medication.";
+        }
+        else if (candidate.getSanity() < 75)
+        {
+            note += "subject is neurotic, and has a mild personality disorder. Recomend therapy.";
+        }
+        else
+        {
+            note += "subject is healthy. No further action.";
+        }
+
+        return note;
     }
 }
