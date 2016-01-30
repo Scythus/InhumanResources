@@ -11,7 +11,7 @@ public class Candidate {
     int age;
 
     // Advanced Stats
-    string[] statNames = new string[] { "purity", "dominion", "aura", "morality", "obedience" };
+    string[] statNames = new string[] { "purity", "dominion", "aura", "morality", "obedience", "intelligence", "ambition" };
 
 
     // Constructor for candidate
@@ -51,7 +51,7 @@ public class Candidate {
             return stats[name];
         } else
         {
-            return 0;
+            return 50;
         }
     }
 

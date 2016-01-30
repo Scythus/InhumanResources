@@ -3,18 +3,33 @@ using System.Collections;
 
 public class CVGenerator {
 
-	public static void GenerateCV(Candidate candidate)
+    public CVGenerator()
+    {
+
+    }
+
+	public CV generateCV(Candidate candidate)
     {
         // Generate a CV object for a given candidate
+        string cvText = "Name: Joe Bloggs\n";
+        cvText += makeJobHistory(candidate);
+        CV cv = new CV(candidate, cvText);
+        return cv;
     }
 
     private string makeJobHistory(Candidate candidate)
     {
         // Get the job history for a candidate
-        return "This candidate has had " + calculateNumberOfJobs(candidate.getAge());
+        int numJobs = calculateNumberOfJobs(candidate.getAge());
+        string jobList = "";
+        for (int x=0; x<=numJobs; x++)
+        {
+            string job = generateJob(candidate);
+            jobList += job;
+            jobList += "\n";
+        }
+        return "This candidate has had " + calculateNumberOfJobs(candidate.getAge()) +"\n\n" + jobList;
     }
-
-
 
     // Calculates the number of jobs held
     // Assumes that jobs lasted at least 2 years, and no more than 12 years
@@ -25,5 +40,10 @@ public class CVGenerator {
         int maxJobs = Mathf.CeilToInt(workingYears / 2);
         int numJobs = Random.Range(minJobs, maxJobs);
         return numJobs;
+    }
+
+    private string generateJob(Candidate candidate)
+    {
+        return JobsGenerator.generateJobForCandidate(candidate);
     }
 }
