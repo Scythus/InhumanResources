@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CVGenerator {
+
 
     public CVGenerator()
     {
 
     }
+
+
 
 	public CV generateCV(Candidate candidate)
     {
@@ -14,6 +18,11 @@ public class CVGenerator {
         string cvText = "";
         cvText += makeHeader(candidate);
         cvText += makeJobHistory(candidate);
+
+        List<string> skillHobbies = generateSkillHobbies(candidate);
+        cvText += skillHobbies[0]+"\n";
+        cvText += skillHobbies[1];
+
         CV cv = new CV(candidate, cvText);
         return cv;
     }
@@ -62,6 +71,25 @@ public class CVGenerator {
     private string generateJob(Candidate candidate)
     {
         return JobsGenerator.generateJobForCandidate(candidate);
+    }
+
+    private List<string> generateSkillHobbies(Candidate candidate)
+    {
+        HobbyGenerator hg = new HobbyGenerator();
+        List<string[]> skillHobbies = hg.generateSkillsHobbies(candidate);
+        string skills = "Skills: \n";
+        string hobbies = "Hobbies: \n";
+        foreach (string[] item in skillHobbies)
+        {
+            if (item[0] == "skill")
+            {
+                skills += item[1] + "\n";
+            } else
+            {
+                hobbies += item[1] + "\n";
+            }
+        }
+        return new List<string> { skills, hobbies };
     }
 
     private string calculateDOB(Candidate candidate)

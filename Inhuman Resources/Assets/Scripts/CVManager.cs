@@ -15,6 +15,7 @@ public class CVManager : MonoBehaviour {
         cv = cvGen.generateCV(candidate);
 
         Debug.Log(cv.getCVText());
+        candidate.debugCandidate();
 
 
 	}

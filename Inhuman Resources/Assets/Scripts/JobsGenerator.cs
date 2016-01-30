@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class JobsGenerator {
 
 
+
+
     // Generate a huge list of possible jobs and industries based on the stats of the candidate
     public static string generateJobForCandidate(Candidate candidate)
     {

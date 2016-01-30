@@ -11,7 +11,7 @@ public class Candidate {
     int age;
 
     // Advanced Stats
-    string[] statNames = new string[] { "purity", "dominion", "aura", "morality", "obedience", "intelligence", "ambition" };
+    public string[] statNames = new string[] { "morality", "fervor", "intelligence", "ambition", "physique" };
 
 
     // Constructor for candidate
@@ -93,6 +93,15 @@ public class Candidate {
         foreach (string stat in statNames)
         {
             stats.Add(stat, generateRandomStat());
+        }
+    }
+
+    public void debugCandidate()
+    {
+        Debug.Log("Printing Candidate");
+        foreach (string stat in statNames)
+        {
+            Debug.Log("Stat " + stat + " is " + getStat(stat));
         }
     }
 }
