@@ -21,6 +21,7 @@ public class UIManagerScript : MonoBehaviour {
     public CanvasRenderer jobPrefab;
     public CanvasRenderer contractPrefab;
     public Transform canvasTrans;
+    public AudioSource pageTurn;
 
     public Button shownJobBtn; //Dirty! You should do this properly!
 
@@ -81,6 +82,7 @@ public class UIManagerScript : MonoBehaviour {
         Debug.Log("NEXT CLICKED");
         if (currentCV < cvList.Count - 1) {
             currentCV++;
+            pageTurn.Play();
         }
         destroyCV();
         renderCV();
@@ -92,6 +94,7 @@ public class UIManagerScript : MonoBehaviour {
         if (currentCV > 0)
         {
             currentCV--;
+            pageTurn.Play();
         }
         destroyCV();
         renderCV();
