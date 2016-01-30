@@ -60,7 +60,7 @@ public class CVGenerator {
     {
         float workingYears = age - 17;
         int minJobs = Mathf.CeilToInt(workingYears / 12);
-        int maxJobs = Mathf.CeilToInt(workingYears / 6);
+        int maxJobs = (Mathf.CeilToInt(workingYears / 6)) < 5 ? Mathf.CeilToInt(workingYears / 6) : 5;
         int numJobs = Random.Range(minJobs, maxJobs);
         return numJobs;
     }
