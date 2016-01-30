@@ -258,7 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cbc202412106c46b5b1489f78c07d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cvPrefab: {fileID: 22278608, guid: 993ea81d49f4c8147a93a04df855226f, type: 2}
+  cvPrefab: {fileID: 22272774, guid: 993ea81d49f4c8147a93a04df855226f, type: 2}
+  canvasTrans: {fileID: 1739681943}
 --- !u!4 &461633346
 Transform:
   m_ObjectHideFlags: 0
