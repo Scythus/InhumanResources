@@ -3,28 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class TestCV {
-    public string name;
-    public string text;
-
-    public TestCV(string n, string t) {
-        name = n;
-        text = t;
-    }
-}
-
-public class TestJob {
-
-    public string title;
-    public string text;
-
-    public TestJob(string ti, string te) {
-        title = ti;
-        text = te;
-    }
-
-}
-
 public class UIManagerScript : MonoBehaviour {
 
     private int currentCV;
@@ -37,6 +15,7 @@ public class UIManagerScript : MonoBehaviour {
     private bool jobshown;
 
     private List<Job> jobs;
+ 
 
     public CanvasRenderer cvPrefab;
     public CanvasRenderer jobPrefab;
@@ -56,6 +35,8 @@ public class UIManagerScript : MonoBehaviour {
 	}
 
     public void startGame() {
+        TotalScore.totalScore = 0.0f;
+
         jobs = new JobBank().getJobList();
 
         for (int i = 0; i < jobs.Count; i++)
@@ -174,11 +155,12 @@ public class UIManagerScript : MonoBehaviour {
 
     public void acceptCurrentCandidate() {
         Score scorer = new Score(cvList[currentCV], job);
-               
 
         renderedContract = Instantiate(contractPrefab);
         renderedContract.gameObject.transform.SetParent(canvasTrans, false);
-        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n"+ scorer.getNormalisedScoreBreakdown(cvList); ;
+        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n"+ scorer.getNormalisedScoreBreakdown(cvList);
+
+        TotalScore.totalScore += scorer.normalisedScore;
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());
