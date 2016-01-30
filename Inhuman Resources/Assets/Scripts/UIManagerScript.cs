@@ -28,12 +28,15 @@ public class TestJob {
 public class UIManagerScript : MonoBehaviour {
 
     private int currentCV;
+    private int currentJob;
     private List<CV> cvList;
-    private TestJob job;
+    private Job job;
     private CanvasRenderer renderedCV;
     private CanvasRenderer renderedJob;
     private CanvasRenderer renderedContract;
     private bool jobshown;
+
+    private List<Job> jobs;
 
     public CanvasRenderer cvPrefab;
     public CanvasRenderer jobPrefab;
@@ -58,7 +61,11 @@ public class UIManagerScript : MonoBehaviour {
         
         currentCV = 0;
 
-        job = new TestJob("Junior Cultist (applied frogs department)", "We need a candidate with a passion for subservience and minimal initiative. Enjoyment of frogs optional");
+        //job = new TestJob("Junior Cultist (applied frogs department)", "We need a candidate with a passion for subservience and minimal initiative. Enjoyment of frogs optional");
+
+        jobs = new JobBank().getJobList();
+        job = jobs[currentJob];
+
 
         renderCV();
         showJob();
@@ -134,7 +141,7 @@ public class UIManagerScript : MonoBehaviour {
 
         renderedJob = Instantiate(jobPrefab);
         renderedJob.gameObject.transform.SetParent(canvasTrans, false);
-        renderedJob.GetComponentInChildren<Text>().text = job.title + " \n\n " + job.text;
+        renderedJob.GetComponentInChildren<Text>().text = job.title + " \n\n " + job.description;
     }
 
     public void hideJob()
