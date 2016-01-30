@@ -14,10 +14,8 @@ public class CVManager : MonoBehaviour {
         CVGenerator cvGen = new CVGenerator();
         cv = cvGen.generateCV(candidate);
 
-        cvPrefab = (CanvasRenderer) Instantiate(cvPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Text text = cvPrefab.transform.Find("CV_Text").GetComponent<Text>();
-        
-        cv.SetupCV(text);
+        Debug.Log(cv.getCVText());
+
 
 	}
 	

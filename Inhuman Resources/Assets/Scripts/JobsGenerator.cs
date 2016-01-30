@@ -12,8 +12,6 @@ public class JobsGenerator {
         List<string> sector = new List<string>();
         // The job title
         List<string> jobTitle = new List<string>();
-        // Numerical representation of their level in the organisation
-        int level = 5;
 
         // General Sectors
         sector.Add("Retail");
@@ -24,7 +22,7 @@ public class JobsGenerator {
         jobTitle.Add("HR Specialist");
         jobTitle.Add("Sales Assistant");
         jobTitle.Add("Accountant");
-        jobTitle.Add("Teacher");
+        jobTitle.Add("Trainer");
 
         // Low Morality Only
         if (candidate.getStat("morality") < 25)
@@ -42,7 +40,6 @@ public class JobsGenerator {
         // High Morality Only
         if (candidate.getStat("morality") > 75)
         {
-            level -= 1;
             sector.Add("Charity");
             sector.Add("Animal Protection");
             sector.Add("Environmental Agency");
@@ -58,7 +55,6 @@ public class JobsGenerator {
         // Low Ambition Only
         if (candidate.getStat("ambition") < 25)
         {
-            level -= 2;
             sector.Add("Fast Food Restaurant");
             sector.Add("Supermarket");
             sector.Add("Heavy Industry");
@@ -72,7 +68,6 @@ public class JobsGenerator {
         // High Ambition Only
         if (candidate.getStat("ambition") > 75)
         {
-            level += 2;
             sector.Add("International Law Company");
             sector.Add("Space Industry");
 
@@ -85,7 +80,6 @@ public class JobsGenerator {
         // Low Intelligence Only
         if (candidate.getStat("intelligence") < 25)
         {
-            level -= 1;
 
             sector.Add("Alternative Medicine");
             sector.Add("Pyramid Scheme");
@@ -100,7 +94,6 @@ public class JobsGenerator {
         // High Intelligence Only
         if (candidate.getStat("intelligence") > 75)
         {
-            level += 1;
 
             sector.Add("Cutting Edge Research Company");
 
@@ -114,7 +107,6 @@ public class JobsGenerator {
         // Low Dominion Only
         if (candidate.getStat("dominion") < 25)
         {
-            level -= 1;
 
             jobTitle.Add("Servant");
             jobTitle.Add("Butler");
@@ -125,7 +117,6 @@ public class JobsGenerator {
         // High Dominion Only
         if (candidate.getStat("dominion") > 75)
         {
-            level += 2;
             sector.Add("Security Firm");
 
             jobTitle.Add("Manager");
@@ -139,7 +130,6 @@ public class JobsGenerator {
         // Format into a string and return
         string output = "Job Title: " + selectedTitle +"\n";
         output += "Sector: " + selectedSector + "\n";
-        output += "Job Success: " + level + "\n";
 
         return output;
 
