@@ -69,23 +69,31 @@ public class UIManagerScript : MonoBehaviour {
         nextLevel();
     }
 
-    public void nextLevel() {
-        job = jobs[currentJob];
-
-        CVGenerator cvGenerator = new CVGenerator();
-
-        cvList = new List<CV>();
-        int numberOfCVs = Random.Range(4, 7);
-        for (int num = 0; num < numberOfCVs; num++)
-        {
-            Candidate candidate = new Candidate();
-            cvList.Add(cvGenerator.generateCV(candidate));
+    public void nextLevel()
+    {
+        
+        if(currentJob>=jobs.Count){
+            Application.LoadLevel("End");
         }
+        else{
+       
+            job = jobs[currentJob];
 
-        currentCV = 0;
+            CVGenerator cvGenerator = new CVGenerator();
 
-        renderCV();
-        showJob();
+            cvList = new List<CV>();
+            int numberOfCVs = Random.Range(4, 7);
+            for (int num = 0; num < numberOfCVs; num++)
+            {
+                Candidate candidate = new Candidate();
+                cvList.Add(cvGenerator.generateCV(candidate));
+            }
+
+            currentCV = 0;
+
+            renderCV();
+            showJob();
+        }
     }
 
     public void btnNext() {
@@ -165,9 +173,12 @@ public class UIManagerScript : MonoBehaviour {
 
 
     public void acceptCurrentCandidate() {
+        Score scorer = new Score(cvList[currentCV], job);
+               
+
         renderedContract = Instantiate(contractPrefab);
         renderedContract.gameObject.transform.SetParent(canvasTrans, false);
-        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n Suitability for Job: F- \n Review: New hire is rubbish with frogs";
+        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n"+ scorer.getNormalisedScoreBreakdown(cvList); ;
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());
