@@ -55,7 +55,7 @@ public class Score {
             score += "This was the worst candidate available - have you considered a career transfer to the sacrifices department?\n\n";
         else if (normalisedScore > 50.0f)
             score += "There were better candidates available, but the high priest is satisfied.\n\n";
-        else if (normalisedScore < 50.0f)
+        else if (normalisedScore <= 50.0f)
             score += "There were worse candidates, but the high priest is displeased with this candidates poor performance.\n\n";
 
         /*score += "Sum: " + scoreSum + "\n";
