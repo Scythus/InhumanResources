@@ -21,7 +21,10 @@ public class UIManagerScript : MonoBehaviour {
     public CanvasRenderer jobPrefab;
     public CanvasRenderer contractPrefab;
     public Transform canvasTrans;
+
+    // Sounds
     public AudioSource pageTurn;
+    public AudioSource stamp;
 
     public Button shownJobBtn; //Dirty! You should do this properly!
 
@@ -167,6 +170,8 @@ public class UIManagerScript : MonoBehaviour {
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());
+
+        stamp.Play();
 
     }
 
