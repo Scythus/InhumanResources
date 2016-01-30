@@ -28,7 +28,7 @@ public class TestJob {
 public class UIManagerScript : MonoBehaviour {
 
     private int currentCV;
-    private List<TestCV> cvList;
+    private List<CV> cvList;
     private TestJob job;
     private CanvasRenderer renderedCV;
     private CanvasRenderer renderedJob;
@@ -42,13 +42,19 @@ public class UIManagerScript : MonoBehaviour {
 
     public Button shownJobBtn; //Dirty! You should do this properly!
 
-	// Use this for initialization
-	void Start () {
-        cvList = new List<TestCV>();
-        cvList.Add(new TestCV("Geoff Gefferson", "My names geoff and I like cats"));
-        cvList.Add(new TestCV("Sam McSamual", "I'm sam and I really hate cats"));
-        cvList.Add(new TestCV("Lucy Lucyyyyyy", "I'm Lucy and I could take or leave cats"));
-        cvList.Add(new TestCV("Rachel von Rachel", "My names Rachel and I don't know what a cat is"));
+    // Use this for initialization
+    void Start() {
+
+        CVGenerator cvGenerator = new CVGenerator();
+
+
+        cvList = new List<CV>();
+        int numberOfCVs = Random.Range(4, 7);
+        for (int num = 0; num < numberOfCVs; num++)
+        {
+            Candidate candidate = new Candidate();
+            cvList.Add(cvGenerator.generateCV(candidate));
+        }
         
         currentCV = 0;
 
@@ -111,7 +117,7 @@ public class UIManagerScript : MonoBehaviour {
     public void renderCV() {
         renderedCV = Instantiate(cvPrefab);
         renderedCV.gameObject.transform.SetParent(canvasTrans, false);
-        renderedCV.GetComponentInChildren<Text>().text = cvList[currentCV].name+" \n\n "+ cvList[currentCV].text;
+        renderedCV.GetComponentInChildren<Text>().text = cvList[currentCV].candidate.getName()+" \n\n"+ cvList[currentCV].getCVText();
 
         Button accept = renderedCV.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnAccept());
@@ -142,7 +148,7 @@ public class UIManagerScript : MonoBehaviour {
     public void acceptCurrentCandidate() {
         renderedContract = Instantiate(contractPrefab);
         renderedContract.gameObject.transform.SetParent(canvasTrans, false);
-        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].name+"\n\n Suitability for Job: F- \n Review: New hire is rubbish with frogs";
+        renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n Suitability for Job: F- \n Review: New hire is rubbish with frogs";
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());

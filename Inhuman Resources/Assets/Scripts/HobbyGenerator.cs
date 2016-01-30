@@ -53,7 +53,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Lounging", false));
         }
-        outputs.Add(options[Random.Range(0, options.Count - 1)]);
+        outputs.Add(options[Random.Range(0, options.Count)]);
     }
 
     private void generateFervorHobbySkill(Candidate candidate)
@@ -77,7 +77,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(entry("skill", "Meditation"));
         }
-        outputs.Add(options[Random.Range(0, options.Count - 1)]);
+        outputs.Add(options[Random.Range(0, options.Count)]);
     }
 
     private void generateAmbitionHobbySkill(Candidate candidate)
@@ -101,7 +101,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "physique", "Lounging", false));
         }
-        outputs.Add(options[Random.Range(0, options.Count - 1)]);
+        outputs.Add(options[Random.Range(0, options.Count)]);
     }
 
     private void generateMoralityHobbySkill(Candidate candidate)
@@ -126,7 +126,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
             options.Add(checkSecondaryStat(candidate, "physique", "Picking on the weak", true));
             options.Add(checkSecondaryStat(candidate, "fervor", "Pyromania", true));
         }
-        outputs.Add(options[Random.Range(0, options.Count - 1)]);
+        outputs.Add(options[Random.Range(0, options.Count)]);
     }
 
     private void generateIntelligenceHobbySkill(Candidate candidate)
@@ -149,7 +149,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Ouija", true));
         }
-        outputs.Add(options[Random.Range(0, options.Count - 1)]);
+        outputs.Add(options[Random.Range(0, options.Count)]);
     }
 
     private string[] checkSecondaryStat(Candidate candidate, string secondary, string name, bool high)

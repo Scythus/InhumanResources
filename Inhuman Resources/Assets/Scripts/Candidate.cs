@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Candidate {
+public class Candidate
+{
 
     Dictionary<string, int> stats;
     Dictionary<string, int> perceivedStats;
 
     // Basic Stats
     int age;
+    string name;
+    int sanity;
 
     // Advanced Stats
     public string[] statNames = new string[] { "morality", "fervor", "intelligence", "ambition", "physique" };
@@ -21,6 +24,8 @@ public class Candidate {
 
         // Basic Stats - these don't have perceived values
         age = generateRandomStat(18, 70);
+        name = NameGenerator.generateName();
+        sanity = 10;
 
         // Generate random stats for all stats in statNames between 1 and 100
         generateStats(statNames);
@@ -39,6 +44,11 @@ public class Candidate {
         return age;
     }
 
+    public string getName()
+    {
+        return name;
+    }
+
     public void setStat(string name, int value)
     {
         stats[name] = value;
@@ -49,7 +59,8 @@ public class Candidate {
         if (stats.ContainsKey(name))
         {
             return stats[name];
-        } else
+        }
+        else
         {
             return 50;
         }

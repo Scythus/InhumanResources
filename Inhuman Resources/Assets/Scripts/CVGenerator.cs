@@ -33,10 +33,7 @@ public class CVGenerator {
         dob += Random.Range(1, 12).ToString() + "/";
         dob += calculateDOB(candidate);
 
-
-        string headerText = "Name: Joe Bloggs\n";
-
-        headerText += "Date of Birth: " + dob + "\n";
+        string headerText = "Date of Birth: " + dob + "\n";
 
         return headerText;
     }
@@ -52,7 +49,7 @@ public class CVGenerator {
             jobList += job;
             jobList += "\n";
         }
-        string jobOutput = "Employment History:\n";
+        string jobOutput = "Employment History:\n\n";
         jobOutput += jobList;
         return jobOutput;
     }
@@ -61,7 +58,7 @@ public class CVGenerator {
     // Assumes that jobs lasted at least 2 years, and no more than 12 years
     private int calculateNumberOfJobs(int age)
     {
-        int workingYears = age - 18;
+        float workingYears = age - 17;
         int minJobs = Mathf.CeilToInt(workingYears / 12);
         int maxJobs = Mathf.CeilToInt(workingYears / 6);
         int numJobs = Random.Range(minJobs, maxJobs);
