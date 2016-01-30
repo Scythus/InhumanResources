@@ -107,7 +107,7 @@ public class HobbyGenerator {
         else
         {
             options.Add(checkSecondaryStat(candidate, "physique", "Lounging", false));
-            options.Add(checkSecondaryStat(candidate, "fervor", "Sitting quietly", false));
+            options.Add(checkSecondaryStat(candidate, "fervor", "Sitting Quietly", false));
             options.Add(checkSecondaryStat(candidate, "morality", "Working with children", true));
             options.Add(entry("skill", "Masochism"));
         }
