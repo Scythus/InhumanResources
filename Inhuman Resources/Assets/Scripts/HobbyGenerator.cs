@@ -49,9 +49,12 @@ public class HobbyGenerator {
         } else if (value > 50)
         {
             options.Add(entry("hobby", "Brawling"));
+            options.Add(entry("hobby", "Hunger Striking"));
         } else
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Lounging", false));
+            options.Add(checkSecondaryStat(candidate, "intelligence", "Reality TV Trivia", false));
+            options.Add(entry("skill", "Hunger Striking"));
         }
         addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
@@ -72,10 +75,13 @@ public class HobbyGenerator {
         {
             options.Add(entry("hobby", "Meditation"));
             options.Add(entry("hobby", "Chanting"));
+            options.Add(entry("hobby", "Sedative Experimentation"));
         }
         else
         {
             options.Add(entry("skill", "Meditation"));
+            options.Add(entry("skill", "Sedative Experimentation"));
+            options.Add(checkSecondaryStat(candidate, "ambition", "Sitting Quietly", false));
         }
         addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
@@ -96,10 +102,14 @@ public class HobbyGenerator {
         else if (value > 50)
         {
             options.Add(entry("hobby", "Puppet Mastery"));
+            options.Add(entry("hobby", "Masochism"));
         }
         else
         {
             options.Add(checkSecondaryStat(candidate, "physique", "Lounging", false));
+            options.Add(checkSecondaryStat(candidate, "fervor", "Sitting quietly", false));
+            options.Add(checkSecondaryStat(candidate, "morality", "Working with children", true));
+            options.Add(entry("skill", "Masochism"));
         }
         addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
@@ -112,11 +122,14 @@ public class HobbyGenerator {
         {
 
             options.Add(entry("skill", "Healing"));
+            options.Add(entry("skill", "Charity Fundraising"));
+            options.Add(checkSecondaryStat(candidate, "ambition", "Working with children", false));
         }
         else if (value > 50)
         {
             options.Add(entry("hobby", "Healing"));
             options.Add(entry("hobby", "Lying"));
+            options.Add(entry("hobby", "Charity Fundraising"));
         }
         else
         {
@@ -144,10 +157,13 @@ public class HobbyGenerator {
         else if (value > 50)
         {
             options.Add(entry("hobby", "Tomes"));
+            options.Add(entry("hobby", "Heavy Drinking"));
         }
         else
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Ouija", true));
+            options.Add(checkSecondaryStat(candidate, "physique", "Reality TV Trivia", false));
+            options.Add(entry("skill", "Heavy Drinking"));
         }
         addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
