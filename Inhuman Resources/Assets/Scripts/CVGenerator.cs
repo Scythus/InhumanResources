@@ -73,17 +73,17 @@ public class CVGenerator {
     private List<string> generateSkillHobbies(Candidate candidate)
     {
         HobbyGenerator hg = new HobbyGenerator();
-        List<string[]> skillHobbies = hg.generateSkillsHobbies(candidate);
+        Dictionary<string, string> skillHobbies = hg.generateSkillsHobbies(candidate);
         string skills = "Skills: \n";
         string hobbies = "Hobbies: \n";
-        foreach (string[] item in skillHobbies)
+        foreach (string item in skillHobbies.Keys)
         {
-            if (item[0] == "skill")
+            if (skillHobbies[item] == "skill")
             {
-                skills += item[1] + "\n";
+                skills += item + "\n";
             } else
             {
-                hobbies += item[1] + "\n";
+                hobbies += item + "\n";
             }
         }
         return new List<string> { skills, hobbies };

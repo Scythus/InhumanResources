@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class HobbyGenerator {
 
-    private List<string[]> outputs = new List<string[]>();
+    private Dictionary<string, string> outputs = new Dictionary<string, string>();
 
-    public List<string[]> generateSkillsHobbies(Candidate candidate) {
+    public Dictionary<string, string> generateSkillsHobbies(Candidate candidate)
+    {
         foreach (string stat in candidate.statNames)
         {
             generateHobbySkillForStat(stat, candidate);
         }
         return outputs;
     }
-    
 
-public void generateHobbySkillForStat(string stat, Candidate candidate)
+    public void generateHobbySkillForStat(string stat, Candidate candidate)
     {
         if (stat == "intelligence")
         {
@@ -53,7 +53,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Lounging", false));
         }
-        outputs.Add(options[Random.Range(0, options.Count)]);
+        addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
 
     private void generateFervorHobbySkill(Candidate candidate)
@@ -77,7 +77,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(entry("skill", "Meditation"));
         }
-        outputs.Add(options[Random.Range(0, options.Count)]);
+        addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
 
     private void generateAmbitionHobbySkill(Candidate candidate)
@@ -101,7 +101,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "physique", "Lounging", false));
         }
-        outputs.Add(options[Random.Range(0, options.Count)]);
+        addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
 
     private void generateMoralityHobbySkill(Candidate candidate)
@@ -126,7 +126,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
             options.Add(checkSecondaryStat(candidate, "physique", "Picking on the weak", true));
             options.Add(checkSecondaryStat(candidate, "fervor", "Pyromania", true));
         }
-        outputs.Add(options[Random.Range(0, options.Count)]);
+        addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
 
     private void generateIntelligenceHobbySkill(Candidate candidate)
@@ -149,7 +149,7 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
         {
             options.Add(checkSecondaryStat(candidate, "ambition", "Ouija", true));
         }
-        outputs.Add(options[Random.Range(0, options.Count)]);
+        addOptionToOutputs(options[Random.Range(0, options.Count)]);
     }
 
     private string[] checkSecondaryStat(Candidate candidate, string secondary, string name, bool high)
@@ -177,5 +177,10 @@ public void generateHobbySkillForStat(string stat, Candidate candidate)
     private string[] entry(string type, string activity)
     {
         return new string[]{type, activity};
+    }
+
+    private void addOptionToOutputs(string[] option)
+    {
+        outputs[option[1]] = option[0];
     }
 }
