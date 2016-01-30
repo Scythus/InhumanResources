@@ -20,8 +20,12 @@ public class CVGenerator {
         cvText += makeJobHistory(candidate);
 
         List<string> skillHobbies = generateSkillHobbies(candidate);
-        cvText += skillHobbies[0]+"\n";
-        cvText += skillHobbies[1];
+        if(skillHobbies[0].Length != 9)
+            cvText += skillHobbies[0];
+        if(skillHobbies[1].Length != 9)
+            cvText += skillHobbies[1];
+
+        cvText += doctorsNote(candidate);
 
         CV cv = new CV(candidate, cvText);
         return cv;
@@ -33,7 +37,7 @@ public class CVGenerator {
         dob += Random.Range(1, 12).ToString() + "/";
         dob += calculateDOB(candidate);
 
-        string headerText = "Date of Birth: " + dob + "\n";
+        string headerText = "Date of Birth: " + dob + "\n\n";
 
         return headerText;
     }
@@ -49,7 +53,7 @@ public class CVGenerator {
             jobList += job;
             jobList += "\n";
         }
-        string jobOutput = "Employment History:\n\n";
+        string jobOutput = "Employment History:\n";
         jobOutput += jobList;
         return jobOutput;
     }
@@ -74,8 +78,8 @@ public class CVGenerator {
     {
         HobbyGenerator hg = new HobbyGenerator();
         Dictionary<string, string> skillHobbies = hg.generateSkillsHobbies(candidate);
-        string skills = "Skills: \n";
-        string hobbies = "Hobbies: \n";
+        string skills = "\nSkills:\n";
+        string hobbies = "\nHobbies:\n";
         foreach (string item in skillHobbies.Keys)
         {
             if (skillHobbies[item] == "skill")
@@ -92,5 +96,27 @@ public class CVGenerator {
     private string calculateDOB(Candidate candidate)
     {
         return (2016 - candidate.getAge()).ToString();
+    }
+
+    private string doctorsNote(Candidate candidate) {
+        string note = "\nDoctors Psychiatric Assessment: ";
+
+        if (candidate.getSanity() < 25) {
+            note += "subject suffers from multiple dellusions, phobias, and psychosis - should be considered dangerous and restrained at all times.";
+        }
+        else if (candidate.getSanity() < 50)
+        {
+            note += "past traumas have made the subject paranoid and prone fits of frenzy. Recomend medication.";
+        }
+        else if (candidate.getSanity() < 75)
+        {
+            note += "subject is neurotic, and has a mild personality disorder. Recomend therapy.";
+        }
+        else
+        {
+            note += "subject is healthy. No further action.";
+        }
+
+        return note;
     }
 }

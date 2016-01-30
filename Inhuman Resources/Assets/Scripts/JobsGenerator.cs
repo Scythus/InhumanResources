@@ -130,8 +130,7 @@ public class JobsGenerator {
         string selectedSector = sector[Random.Range(0, sector.Count - 1)];
 
         // Format into a string and return
-        string output = "\tJob Title: " + selectedTitle +"\n";
-        output += "\tSector: " + selectedSector + "\n";
+        string output = "\t- " + selectedTitle +", " + selectedSector;
 
         return output;
 

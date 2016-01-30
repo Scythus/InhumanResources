@@ -137,7 +137,7 @@ public class Score {
         physiqueScore = calcIndividualScore(physique, job.phyWeighting);
 
         // Calculate sanity score
-        int sanity = candidate.getStat("sanity");
+        int sanity = candidate.getSanity();
         sanityScore = calcIndividualScore(sanity, job.sanWeighting);
 
         scoreSum = intelScore + moralityScore + ambitionScore + fervorScore + physiqueScore + sanityScore;
