@@ -1340,6 +1340,7 @@ GameObject:
   - 224: {fileID: 1890135619}
   - 222: {fileID: 1890135621}
   - 114: {fileID: 1890135620}
+  - 114: {fileID: 1890135622}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1362,7 +1363,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -440, y: 410}
+  m_AnchoredPosition: {x: -450, y: 410}
   m_SizeDelta: {x: 160, y: 150}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1890135620
@@ -1398,6 +1399,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890135618}
+--- !u!114 &1890135622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890135618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: .5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1898075491
 GameObject:
   m_ObjectHideFlags: 0
