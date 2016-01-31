@@ -13,6 +13,7 @@ public class UIManagerScript : MonoBehaviour {
     private CanvasRenderer renderedJob;
     private CanvasRenderer renderedContract;
     private bool jobshown;
+    private bool contractshown;
 
     private List<Job> jobs;
  
@@ -51,7 +52,7 @@ public class UIManagerScript : MonoBehaviour {
 
     public void nextLevel()
     {
-        
+        contractshown = false;
         if(currentJob>=jobs.Count){
             Application.LoadLevel("End");
         }
@@ -79,44 +80,52 @@ public class UIManagerScript : MonoBehaviour {
 
     public void btnNext() {
         Debug.Log("NEXT CLICKED");
-        if (currentCV < cvList.Count - 1) {
+        if (currentCV < cvList.Count - 1&&!jobshown&&!contractshown)
+        {
             currentCV++;
             pageTurn.Play();
+
+            refreshHUD();
+            destroyCV();
+            renderCV();
         }
-        refreshHUD();
-        destroyCV();
-        renderCV();
     }
 
     public void btnPrev()
     {
         Debug.Log("PREV CLICKED");
-        if (currentCV > 0)
+        if (currentCV > 0 && !jobshown && !contractshown)
         {
             currentCV--;
             pageTurn.Play();
+
+            refreshHUD();
+            destroyCV();
+            renderCV();
         }
-        refreshHUD();
-        destroyCV();
-        renderCV();
     }
 
     public void btnShowJob(){
         Debug.Log("JOB CLICKED");
-
-        if (jobshown)
+        if (!contractshown)
         {
-            hideJob();
-        }
-        else {
-            showJob();
+            if (jobshown)
+            {
+                hideJob();
+            }
+            else
+            {
+                showJob();
+            }
         }
     }
 
     public void btnAccept() {
         Debug.Log("ACCEPT CLICKED");
-
-        acceptCurrentCandidate();
+        if (!jobshown)
+        {
+            acceptCurrentCandidate();
+        }
     }
 
     public void btnNextJob()
@@ -158,6 +167,7 @@ public class UIManagerScript : MonoBehaviour {
 
 
     public void acceptCurrentCandidate() {
+        contractshown = true;
         Score scorer = new Score(cvList[currentCV], job);
 
         renderedContract = Instantiate(contractPrefab);
