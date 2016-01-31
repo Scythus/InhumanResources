@@ -6,12 +6,12 @@ public class CV  {
 
     // Class which represents the CV of a given candidate
 
-    public Candidate candidate = new Candidate();
+    public Candidate candidate;
 
     string cvText;
-    string cvPic;
+    Sprite cvPic;
 
-    public CV(Candidate candidate, string cvContents, string cvPic)
+    public CV(Candidate candidate, string cvContents, Sprite cvPic)
     {
 
         this.candidate = candidate;
@@ -26,7 +26,7 @@ public class CV  {
         return this.candidate;
     }
 
-    public string getCVPic()
+    public Sprite getCVPic()
     {
         return cvPic;
     }

@@ -27,7 +27,7 @@ public class CVGenerator {
 
         cvText += doctorsNote(candidate);
 
-        string cvPic = candidate.getCVPic();
+        Sprite cvPic = candidate.getCVPic();
 
         CV cv = new CV(candidate, cvText, cvPic);
         return cv;

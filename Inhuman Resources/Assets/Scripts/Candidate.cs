@@ -16,13 +16,13 @@ public class Candidate
     bool genderFemale;
 
     // Picture
-    string cvPic;
+    Sprite cvPic;
 
     // Advanced Stats
     public string[] statNames = new string[] { "morality", "fervor", "intelligence", "ambition", "physique" };
 
     // Constructor for candidate
-    public Candidate()
+    public Candidate(ref List<Sprite> maleSprites, ref List<Sprite> femaleSprites)
     {
         this.stats = new Dictionary<string, int>();
 
@@ -35,7 +35,15 @@ public class Candidate
         sanity = Random.Range(1, 100);
 
         // Mug Shot
-        cvPic = "Test";
+        if (getGender() == "Male")
+        {
+            cvPic = maleSprites[Random.Range(0, maleSprites.Count)];
+            maleSprites.Remove(cvPic);
+        } else
+        {
+            cvPic = femaleSprites[Random.Range(0, femaleSprites.Count)];
+            femaleSprites.Remove(cvPic);
+        }
 
         // Generate random stats for all stats in statNames between 1 and 100
         generateStats(statNames);
@@ -60,7 +68,7 @@ public class Candidate
         }
     }
 
-    public string getCVPic()
+    public Sprite getCVPic()
     {
         return cvPic;
     }

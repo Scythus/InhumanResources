@@ -24,6 +24,9 @@ public class UIManagerScript : MonoBehaviour {
     public CanvasRenderer HUD;
     public Transform canvasTrans;
 
+    public List<Sprite> femaleSprites;
+    public List<Sprite> maleSprites;
+
     // Sounds
     public AudioSource pageTurn;
     public AudioSource stamp;
@@ -66,7 +69,7 @@ public class UIManagerScript : MonoBehaviour {
             int numberOfCVs = Random.Range(4, 7);
             for (int num = 0; num < numberOfCVs; num++)
             {
-                Candidate candidate = new Candidate();
+                Candidate candidate = new Candidate(ref maleSprites, ref femaleSprites);
                 cvList.Add(cvGenerator.generateCV(candidate));
             }
 
@@ -142,6 +145,11 @@ public class UIManagerScript : MonoBehaviour {
 
         Button accept = renderedCV.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnAccept());
+
+        // Set Portrait
+        Image mug = renderedCV.transform.Find("CV Mug").GetComponent<Image>();
+        mug.sprite = cvList[currentCV].candidate.getCVPic();
+
     }
 
     public void destroyCV() {
