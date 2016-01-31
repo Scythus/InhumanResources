@@ -27,7 +27,9 @@ public class CVGenerator {
 
         cvText += doctorsNote(candidate);
 
-        CV cv = new CV(candidate, cvText);
+        string cvPic = candidate.getCVPic();
+
+        CV cv = new CV(candidate, cvText, cvPic);
         return cv;
     }
 
@@ -37,7 +39,8 @@ public class CVGenerator {
         dob += Random.Range(1, 12).ToString() + "/";
         dob += calculateDOB(candidate);
 
-        string headerText = "Date of Birth: " + dob + "\n\n";
+        string headerText = "Date of Birth: " + dob + "\n";
+        headerText += "Gender: " + candidate.getGender()+ "\n\n";
 
         return headerText;
     }

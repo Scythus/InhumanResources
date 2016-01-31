@@ -9,19 +9,26 @@ public class CV  {
     public Candidate candidate = new Candidate();
 
     string cvText;
+    string cvPic;
 
-    public CV(Candidate candidate, string cvContents)
+    public CV(Candidate candidate, string cvContents, string cvPic)
     {
 
         this.candidate = candidate;
 
         // Generate a CV
         this.cvText = cvContents;
+        this.cvPic = cvPic;
     }
 
     public Candidate getCandidate()
     {
         return this.candidate;
+    }
+
+    public string getCVPic()
+    {
+        return cvPic;
     }
 
     public string getCVText()

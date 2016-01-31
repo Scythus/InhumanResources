@@ -12,20 +12,30 @@ public class Candidate
     int age;
     string name;
     int sanity;
+    // True if female, false if male
+    bool genderFemale;
+
+    // Picture
+    string cvPic;
 
     // Advanced Stats
     public string[] statNames = new string[] { "morality", "fervor", "intelligence", "ambition", "physique" };
-
 
     // Constructor for candidate
     public Candidate()
     {
         this.stats = new Dictionary<string, int>();
 
+        // Randomly pick male or female
+        genderFemale = (Random.Range(0, 2) == 1);
+
         // Basic Stats - these don't have perceived values
         age = generateRandomStat(18, 70);
-        name = NameGenerator.generateName();
+        name = NameGenerator.generateName(getGender());
         sanity = Random.Range(1, 100);
+
+        // Mug Shot
+        cvPic = "Test";
 
         // Generate random stats for all stats in statNames between 1 and 100
         generateStats(statNames);
@@ -37,6 +47,22 @@ public class Candidate
             perceivedStats.Add(stat.Key, (stat.Value + Random.Range(-10, 10)));
         }
 
+    }
+
+    public string getGender()
+    {
+        if (genderFemale == true)
+        {
+            return "Female";
+        } else
+        {
+            return "Male";
+        }
+    }
+
+    public string getCVPic()
+    {
+        return cvPic;
     }
 
     public int getAge()

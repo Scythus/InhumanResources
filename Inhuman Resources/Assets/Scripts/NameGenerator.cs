@@ -3,50 +3,58 @@ using UnityEngine;
 
 internal class NameGenerator
 {
-    internal static string generateName()
+    internal static string generateName(string gender)
     {
-        return generateFirstName() + " " + generateLastName();
+        return generateFirstName(gender) + " " + generateLastName();
     }
 
-    internal static string generateFirstName()
+    internal static string generateFirstName(string gender)
     {
-        List<string> names = new List<string> {
-            "Charlie",//m
-            "Andy",
-            "Clayton",
-            "James",
-            "Buster",
-            "Myron",
-            "Turner",
-            "Byron",
-            "Fletcher",
-            "Bertrand",
-            "Erwin",
-            "Mike",
-            "Raleigh",
-            "Napoleon",
-            "Elton",
-            "Rowland",
-            "Cyril",
-            "Douglas",
-            "Arnold",
-            "Lauretta",//f
-            "Winnifred",
-            "Sophronia",
-            "Sofia",
-            "Greta",
-            "Leora",
-            "Alfreda",
-            "Corene",
-            "Mercedes",
-            "Margie",
-            "Adelaide",
-            "Zenobia",
-            "Charlotte",
-            "Hessie",
-            "Rosalia",
-            "Emeline",
-            "Flossie"};
+        List<string> names;
+        if (gender == "Male")
+        {
+            names = new List<string> {
+                "Charlie",
+                "Andy",
+                "Clayton",
+                "James",
+                "Buster",
+                "Myron",
+                "Turner",
+                "Byron",
+                "Fletcher",
+                "Bertrand",
+                "Erwin",
+                "Mike",
+                "Raleigh",
+                "Napoleon",
+                "Elton",
+                "Rowland",
+                "Cyril",
+                "Douglas",
+                "Arnold"
+            };
+        } else {
+            names = new List<string> {
+                "Lauretta",
+                "Winnifred",
+                "Sophronia",
+                "Sofia",
+                "Greta",
+                "Leora",
+                "Alfreda",
+                "Corene",
+                "Mercedes",
+                "Margie",
+                "Adelaide",
+                "Zenobia",
+                "Charlotte",
+                "Hessie",
+                "Rosalia",
+                "Emeline",
+                "Flossie"
+            };
+        }
         return names[Random.Range(0, names.Count)];
     }
 
