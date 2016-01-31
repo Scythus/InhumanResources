@@ -98,7 +98,7 @@ public class CVGenerator {
 
     private string calculateDOB(Candidate candidate)
     {
-        return (2016 - candidate.getAge()).ToString();
+        return (1920 - candidate.getAge()).ToString();
     }
 
     private string doctorsNote(Candidate candidate) {
