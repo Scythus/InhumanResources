@@ -106,52 +106,56 @@ public class JobBank
             "Recent expansion in our Black Swamps office means we have an opening in our historical potion focussed team for an experienced witch or warlock. The ideal candidate will be a go-getter keen on progressing to the highest levels of alchemy and poison development with natual academic aptitude. A calm and steady hand is needed for handeling the more explosive compounds, and the high witch has requested a minimum age of 68 for this role. A limp, warts, and cackling is a plus. "
             ));
 
-        /*jobList.Add(new Job(
+        jobList.Add(new Job(
             0.0f,
+            -1.0f,
             0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            "",
-            ""
+            -1.0f,
+            1.0f,
+            1.0f,
+            "Cult Assassin",
+            "In our day to day business of human sacrifice and connecting with eldrich terrors from beyond space and time we encounter a number of testing challenges. These are often human in nature from politicians, to investigators, to law enforcement - all with their own complaints about so called 'murder' and 'the end of humanity'. We have an opening for a talented troubleshooter for these problems - literally in the sense that they will shoot the trouble. The ideal candidate should be fit and healthy, well trained in 'the murderous arts', and willing to compromise over any morality based inhibitions they might have. Other desirable skills are a clear mind yet unspoiled by death and destruction (our research shows gibbering madly reduces stealth), and a calm, relaxed, demeanour able to hold a sniper rifle steady."
             ));
 
         jobList.Add(new Job(
+            -2.0f,
             0.0f,
+            -2.0f,
             0.0f,
+            -3.0f,
             0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            "",
-            ""
+            "Slave Intern",
+            "We have an entry level opening for someone with very little ambition, no self respect, and serious need for strong (forceful even) direction in their life. Duties include fanning the high priest, mopping up the sacraficial alter, and cowering at arcane terrors. The ideal candidate will be as weak and scrawny as possible (to prevent later resistance when they realise what the job entails), along with minimal personal drive and intelligence (to reduce escape attempts)."
             ));
 
         jobList.Add(new Job(
+            2.0f,
+            -1.0f,
+            2.0f,
+            -1.0f,
             0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            "",
-            ""
+            1.0f,
+            "Senior Cultist (Scheming, Corruption, and Litigious Arts)",
+            "A new Senior post has opened up due to internal promotion of the previous holder. We are very proud of 'Dark Puppertmasters' task force here at the cult of infinite darkness, and only the best candidate will do for this important role. Responsibilities include bribing politicians and law enforcement, representing senior cultists in court, machiavellian scheming, and making allegations of 'blood magic' disappear. The ideal candidate will be academically minded, and with a strong personal drive to go straight to the top. Its also important that the candidate have a morale code broad enough to include 'murder', 'extortion', and 'world domination'. Finally as this person will often represent us in high society we wish to keep screaming in tongues and furious raving to a minimum."
             ));
 
-        jobList.Add(new Job(
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            "",
-            ""
-            ));*/
+
+            for (int i = 0; i < jobList.Count; i++)
+            {
+                Job temp = jobList[i];
+                int randomIndex = Random.Range(i, jobList.Count);
+                jobList[i] = jobList[randomIndex];
+                jobList[randomIndex] = temp;
+            }
+
+            List<Job> jobSelection = new List<Job>();
+
+            for (int i = 0; i < 5; i++) {
+                jobSelection.Add(jobList[i]);
+            }
 
 
-        return jobList;
+        return jobSelection;
     }
 
 }

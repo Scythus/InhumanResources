@@ -20,6 +20,7 @@ public class UIManagerScript : MonoBehaviour {
     public CanvasRenderer cvPrefab;
     public CanvasRenderer jobPrefab;
     public CanvasRenderer contractPrefab;
+    public CanvasRenderer HUD;
     public Transform canvasTrans;
 
     // Sounds
@@ -43,13 +44,7 @@ public class UIManagerScript : MonoBehaviour {
 
         jobs = new JobBank().getJobList();
 
-        for (int i = 0; i < jobs.Count; i++)
-        {
-            Job temp = jobs[i];
-            int randomIndex = Random.Range(i, jobs.Count);
-            jobs[i] = jobs[randomIndex];
-            jobs[randomIndex] = temp;
-        }
+        
         currentJob = 0;
         nextLevel();
     }
@@ -78,6 +73,7 @@ public class UIManagerScript : MonoBehaviour {
 
             renderCV();
             showJob();
+            refreshHUD();
         }
     }
 
@@ -87,6 +83,7 @@ public class UIManagerScript : MonoBehaviour {
             currentCV++;
             pageTurn.Play();
         }
+        refreshHUD();
         destroyCV();
         renderCV();
     }
@@ -99,6 +96,7 @@ public class UIManagerScript : MonoBehaviour {
             currentCV--;
             pageTurn.Play();
         }
+        refreshHUD();
         destroyCV();
         renderCV();
     }
@@ -167,6 +165,7 @@ public class UIManagerScript : MonoBehaviour {
         renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n"+ scorer.getNormalisedScoreBreakdown(cvList);
 
         TotalScore.totalScore += scorer.normalisedScore;
+        refreshHUD();
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());
@@ -194,6 +193,10 @@ public class UIManagerScript : MonoBehaviour {
         destroyCV();
         destroyContract();
         nextLevel();
+    }
+
+    public void refreshHUD() {
+        HUD.GetComponent<Text>().text = "Vacancy: " + (currentJob + 1) + "/" + jobs.Count + "\nCandidate: " + (currentCV + 1) + "/" + cvList.Count + "\nScore: " + TotalScore.totalScore;
     }
 
     
