@@ -25,7 +25,7 @@ public class EndUIManager : MonoBehaviour {
         }
         else if (avgScore < 75)
         {
-            feedback += "Your appointments are adequate. The high priest has allowed you to continue in your role as chief recruiter inexchange for a new contract promising a 1000 years of service.";
+            feedback += "Your appointments are adequate. The high priest has allowed you to continue in your role as chief recruiter in exchange for a new contract promising 1000 years of service.";
         }
         else if (avgScore < 90)
         {
