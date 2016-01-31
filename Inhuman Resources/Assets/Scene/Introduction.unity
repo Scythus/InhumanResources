@@ -533,21 +533,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Welcome to Inhuman Resources
-
-
-    You are a talented recruitment expert in your prime, and (due to client diversification)
-    have been assigned to the cult of infinite darkness as their new chief recruiter.
-
-
-    The high priest has a great ritual comming up and has a number of vacancies he
-    needs filled - ranging from senior clerics to human sacrifices. Your career, and
-    imortal soul, depend on you selecting the right candidate for the right job.
-
-
-    Consider the job specification carefully, and pick the candidate with the best
-    cv for the job. Bare in mind - you will be rated based on the quality of candidate
-    available. If they''re all terrible its your job to find the best of a bad bunch.'
+  m_Text: "Welcome to Inhuman Resources\r\n\r\nYou are a talented recruitment expert
+    in your prime, and (due to client diversification) you have been assigned to the
+    cult of infinite darkness as their new chief recruiter.\r\n\r\nThe high priest
+    has a great ritual coming up and has a number of vacancies he needs filled - ranging
+    from senior clerics to human sacrifices. Your career, and immortal soul, depend
+    on you selecting the right candidate for the right job.\r\n\r\nConsider the job
+    specification carefully, and pick the candidate with the best cv for the job.
+    Bear in mind - you will be rated based on the quality of candidate available.
+    If they're all terrible it\u2019s your job to find the best of a bad bunch.\r\n"
 --- !u!222 &1055470083
 CanvasRenderer:
   m_ObjectHideFlags: 0
