@@ -13,6 +13,7 @@ public class UIManagerScript : MonoBehaviour {
     private CanvasRenderer renderedJob;
     private CanvasRenderer renderedContract;
     private bool jobshown;
+    private bool contractshown;
 
     private List<Job> jobs;
  
@@ -20,6 +21,7 @@ public class UIManagerScript : MonoBehaviour {
     public CanvasRenderer cvPrefab;
     public CanvasRenderer jobPrefab;
     public CanvasRenderer contractPrefab;
+    public CanvasRenderer HUD;
     public Transform canvasTrans;
 
     // Sounds
@@ -43,20 +45,14 @@ public class UIManagerScript : MonoBehaviour {
 
         jobs = new JobBank().getJobList();
 
-        for (int i = 0; i < jobs.Count; i++)
-        {
-            Job temp = jobs[i];
-            int randomIndex = Random.Range(i, jobs.Count);
-            jobs[i] = jobs[randomIndex];
-            jobs[randomIndex] = temp;
-        }
+        
         currentJob = 0;
         nextLevel();
     }
 
     public void nextLevel()
     {
-        
+        contractshown = false;
         if(currentJob>=jobs.Count){
             Application.LoadLevel("End");
         }
@@ -78,47 +74,58 @@ public class UIManagerScript : MonoBehaviour {
 
             renderCV();
             showJob();
+            refreshHUD();
         }
     }
 
     public void btnNext() {
         Debug.Log("NEXT CLICKED");
-        if (currentCV < cvList.Count - 1) {
+        if (currentCV < cvList.Count - 1&&!jobshown&&!contractshown)
+        {
             currentCV++;
             pageTurn.Play();
+
+            refreshHUD();
+            destroyCV();
+            renderCV();
         }
-        destroyCV();
-        renderCV();
     }
 
     public void btnPrev()
     {
         Debug.Log("PREV CLICKED");
-        if (currentCV > 0)
+        if (currentCV > 0 && !jobshown && !contractshown)
         {
             currentCV--;
             pageTurn.Play();
+
+            refreshHUD();
+            destroyCV();
+            renderCV();
         }
-        destroyCV();
-        renderCV();
     }
 
     public void btnShowJob(){
         Debug.Log("JOB CLICKED");
-
-        if (jobshown)
+        if (!contractshown)
         {
-            hideJob();
-        }
-        else {
-            showJob();
+            if (jobshown)
+            {
+                hideJob();
+            }
+            else
+            {
+                showJob();
+            }
         }
     }
 
     public void btnAccept() {
         Debug.Log("ACCEPT CLICKED");
-
-        acceptCurrentCandidate();
+        if (!jobshown)
+        {
+            acceptCurrentCandidate();
+        }
     }
 
     public void btnNextJob()
@@ -160,6 +167,7 @@ public class UIManagerScript : MonoBehaviour {
 
 
     public void acceptCurrentCandidate() {
+        contractshown = true;
         Score scorer = new Score(cvList[currentCV], job);
 
         renderedContract = Instantiate(contractPrefab);
@@ -167,6 +175,7 @@ public class UIManagerScript : MonoBehaviour {
         renderedContract.GetComponentInChildren<Text>().text = "Contract for "+job.title + " \n\n " + "New Hire: "+cvList[currentCV].candidate.getName()+"\n\n"+ scorer.getNormalisedScoreBreakdown(cvList);
 
         TotalScore.totalScore += scorer.normalisedScore;
+        refreshHUD();
 
         Button accept = renderedContract.GetComponentInChildren<Button>();
         accept.onClick.AddListener(() => btnNextJob());
@@ -194,6 +203,10 @@ public class UIManagerScript : MonoBehaviour {
         destroyCV();
         destroyContract();
         nextLevel();
+    }
+
+    public void refreshHUD() {
+        HUD.GetComponent<Text>().text = "Vacancy: " + (currentJob + 1) + "/" + jobs.Count + "\nCandidate: " + (currentCV + 1) + "/" + cvList.Count + "\nScore: " + TotalScore.totalScore;
     }
 
     
