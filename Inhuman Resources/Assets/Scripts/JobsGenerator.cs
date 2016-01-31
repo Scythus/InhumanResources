@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class JobsGenerator {
 
 
-
-
     // Generate a huge list of possible jobs and industries based on the stats of the candidate
     public static string generateJobForCandidate(Candidate candidate)
     {
@@ -15,126 +13,147 @@ public class JobsGenerator {
         // The job title
         List<string> jobTitle = new List<string>();
 
-        // General Sectors
-        sector.Add("Retail");
-        sector.Add("Education");
+        int intelligence = candidate.getStat("intelligenge");
+        int morality = candidate.getStat("morality");
+        int ambition = candidate.getStat("ambition");
+        int fervor = candidate.getStat("fervor");
+        int physique = candidate.getStat("physique");
+        int sanity = candidate.getSanity();
 
-        // General Job Titles
-
-        jobTitle.Add("HR Specialist");
-        jobTitle.Add("Sales Assistant");
-        jobTitle.Add("Accountant");
-        jobTitle.Add("Trainer");
-
-        // Low Morality Only
-        if (candidate.getStat("morality") < 25)
+        if (intelligence > 50)
         {
-            sector.Add("Gambling Industry");
-            sector.Add("Arms Industry");
-            sector.Add("Banking Sector");
-            sector.Add("Tobacco Industry");
-            sector.Add("Fossil Fuel Industry");
-            sector.Add("Pharmacutical Industry");
-
-            jobTitle.Add("Baliff");
-        }
-
-        // High Morality Only
-        if (candidate.getStat("morality") > 75)
-        {
-            sector.Add("Charity");
-            sector.Add("Animal Protection");
-            sector.Add("Environmental Agency");
-            sector.Add("Social Care Agency");
-
-            jobTitle.Add("Priest");
-            jobTitle.Add("Paediatrician");
-            jobTitle.Add("Surgeon");
-            jobTitle.Add("Vet");
-        }
-
-
-        // Low Ambition Only
-        if (candidate.getStat("ambition") < 25)
-        {
-            sector.Add("Fast Food Restaurant");
-            sector.Add("Supermarket");
-            sector.Add("Heavy Industry");
-
-
-            jobTitle.Add("Cleaner");
-            jobTitle.Add("Street Sweeper");
-            jobTitle.Add("Factory Worker");
-        }
-
-        // High Ambition Only
-        if (candidate.getStat("ambition") > 75)
-        {
-            sector.Add("International Law Company");
-            sector.Add("Space Industry");
-
-            jobTitle.Add("Lawyer");
+            jobTitle.Add("Scientist");
+            jobTitle.Add("Engineer");
+            jobTitle.Add("Doctor");
             jobTitle.Add("CEO");
-            jobTitle.Add("Financial Investor");
-
-        }
-
-        // Low Intelligence Only
-        if (candidate.getStat("intelligence") < 25)
+            jobTitle.Add("Politician");
+        } else
         {
-
-            sector.Add("Alternative Medicine");
-            sector.Add("Pyramid Scheme");
-
-            jobTitle.Add("Tea Maker");
-            jobTitle.Add("Toilet Attendant");
+            jobTitle.Add("Reality TV Star");
             jobTitle.Add("Lid Tightener");
             jobTitle.Add("Crisp Tester");
-
+            jobTitle.Add("Professional Drinker");
         }
 
-        // High Intelligence Only
-        if (candidate.getStat("intelligence") > 75)
+        if (morality > 50)
         {
+            jobTitle.Add("Doctor");
+            jobTitle.Add("Volunteer");
+            jobTitle.Add("Police Officer");
+            jobTitle.Add("Priest");
+        }
+        else
+        {
+            jobTitle.Add("Baliff");
+            jobTitle.Add("Tobacco Lobbyist");
+            jobTitle.Add("Politician");
+            jobTitle.Add("Mercenary");
+        }
 
-            sector.Add("Cutting Edge Research Company");
-
+        if (ambition > 50)
+        {
+            jobTitle.Add("CEO");
+            jobTitle.Add("Banker");
+            jobTitle.Add("Politician");
             jobTitle.Add("Scientist");
-            jobTitle.Add("Professional Gambler");
-            jobTitle.Add("High Stakes Trader");
-            jobTitle.Add("Engineer");
-            jobTitle.Add("Programmer");
+            jobTitle.Add("Council Official");
+            jobTitle.Add("Athlete");
+            jobTitle.Add("Actor");
         }
-
-        // Low Dominion Only
-        if (candidate.getStat("dominion") < 25)
+        else
         {
-
-            jobTitle.Add("Servant");
-            jobTitle.Add("Butler");
-            jobTitle.Add("Waiting Staff");
-            jobTitle.Add("Yes-Person");
+            jobTitle.Add("Tea Maker");
+            jobTitle.Add("Lid Tightener");
+            jobTitle.Add("Clown");
+            jobTitle.Add("Cat Sitter");
+            jobTitle.Add("Cleaner");
         }
 
-        // High Dominion Only
-        if (candidate.getStat("dominion") > 75)
+        if (fervor > 50)
         {
-            sector.Add("Security Firm");
-
-            jobTitle.Add("Manager");
-            jobTitle.Add("Military Officer");
+            jobTitle.Add("Actor");
+            jobTitle.Add("Clown");
+            jobTitle.Add("Mystic");
+            jobTitle.Add("Reality TV Star");
         }
+        else
+        {
+            jobTitle.Add("Data Entry Specialist");
+            jobTitle.Add("Lid Tightener");
+            jobTitle.Add("Sofa Tester");
+            jobTitle.Add("Cat Sitter");
+        }
+
+        if (physique > 50)
+        {
+            jobTitle.Add("Mercenary");
+            jobTitle.Add("Police Officer");
+            jobTitle.Add("Athlete");
+            jobTitle.Add("Baliff");
+        }
+        else
+        {
+            jobTitle.Add("Crisp Tester");
+            jobTitle.Add("Sofa Tester");
+            jobTitle.Add("Professional Drinker");
+            jobTitle.Add("Professional Darts Player");
+        }
+
+        if (sanity < 50)
+        {
+            jobTitle.Add("Mad Scientist");
+            jobTitle.Add("Data Entry Specialist");
+            jobTitle.Add("Professional Drinker");
+        }
+
+        if (sanity < 25)
+        {
+            jobTitle.Add("DATA EXPUNGED");
+        }
+
+        if (sanity < 25)
+        {
+            sector.Add("DATA EXPUNGED");
+        }
+
+        sector.Add("Depository of the Holy Wyrms");
+        sector.Add("Vasquez Realizations Of Paris");
+        sector.Add("Apocalypse Architecture");
+        sector.Add("Mckay Chemical Specialized Transportation");
+        sector.Add("Huffman Progressive Fabrication");
+        sector.Add("Potts Paragon Education Cargo");
+        sector.Add("Berg Oil Housing");
+        sector.Add("Genetics Instrument Photographic");
+        sector.Add("Independent Directorate of Prefectures");
+        sector.Add("The Talisman Alliance");
+        sector.Add("Advocate Phylactery Guild");
+        sector.Add("Consumables Of Warsaw");
+        sector.Add("Cryptonautics");
+        sector.Add("Mechanical Physiotech");
+        sector.Add("Gyrocorp");
+        sector.Add("Housing House Packaging");
+        sector.Add("Singleton Office Agricultural Healthcare");
+        sector.Add("Stein Advanced Science Technology");
+        sector.Add("Hudson Agricultural Entertainment Recreational");
+        sector.Add("Petersen Tactical Nuclear Fabrication");
+        sector.Add("Minaret of the Cursed Ogre");
+        sector.Add("Obsidian Repository of Secrets");
+        sector.Add("Oubliette of Glass and Clarity");
+        sector.Add("Eternal Hall of the Unholy");
+        sector.Add("Sacred Swamp of Chaotic Enchantment");
+        sector.Add("Vasquez Realizations Of Paris");
 
         // Pick sector and title at random
-        string selectedTitle = jobTitle[Random.Range(0, jobTitle.Count-1)];
-        string selectedSector = sector[Random.Range(0, sector.Count - 1)];
+        string selectedTitle = jobTitle[Random.Range(0, jobTitle.Count)];
+        string selectedSector = sector[Random.Range(0, sector.Count)];
 
         // Format into a string and return
         string output = "\t- " + selectedTitle +", " + selectedSector;
 
         return output;
 
-
     }
+
+
 
 }
